@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: mysql
+    env_file: .env.development
+    ports:
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - diy-fc-db:/var/lib/mysql
+
+volumes:
+  diy-fc-db:
