@@ -7,6 +7,10 @@ import { Player } from './modules/players/player.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClubsModule } from './modules/clubs/clubs.module';
 import { Club } from './modules/clubs/entities/club.entity';
+import { GamesModule } from './modules/games/games.module';
+import { Game } from './modules/games/entities/game.entity';
+import { Season } from './modules/seasons/entities/season.entity';
+import { SeasonsModule } from './modules/seasons/seasons.module';
 
 @Module({
   imports: [
@@ -19,7 +23,7 @@ import { Club } from './modules/clubs/entities/club.entity';
       username: 'beulec',
       password: 'not_in_prod',
       database: 'diy_fc',
-      entities: [Player, Club],
+      entities: [Player, Club, Game, Season],
       synchronize: true,
     }),
     ConfigModule.forRoot({
@@ -28,6 +32,8 @@ import { Club } from './modules/clubs/entities/club.entity';
     }),
     PlayersModule,
     ClubsModule,
+    GamesModule,
+    SeasonsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
