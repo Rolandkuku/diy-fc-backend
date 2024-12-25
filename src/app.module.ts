@@ -14,7 +14,7 @@ import { Club } from './modules/clubs/entities/club.entity';
     // See: https://docs.nestjs.com/techniques/database#custom-datasource-factory
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 3306,
       username: 'beulec',
       password: 'not_in_prod',
@@ -22,11 +22,11 @@ import { Club } from './modules/clubs/entities/club.entity';
       entities: [Player, Club],
       synchronize: true,
     }),
-    PlayersModule,
     ConfigModule.forRoot({
       envFilePath: '.env.development',
       isGlobal: true,
     }),
+    PlayersModule,
     ClubsModule,
   ],
   controllers: [AppController],
