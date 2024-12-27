@@ -11,6 +11,9 @@ import { GamesModule } from './modules/games/games.module';
 import { Game } from './modules/games/entities/game.entity';
 import { Season } from './modules/seasons/entities/season.entity';
 import { SeasonsModule } from './modules/seasons/seasons.module';
+import { TeamsModule } from './modules/teams/teams.module';
+import { WeeksModule } from './modules/weeks/weeks.module';
+import { ResultsModule } from './modules/results/results.module';
 
 @Module({
   imports: [
@@ -34,6 +37,9 @@ import { SeasonsModule } from './modules/seasons/seasons.module';
     ClubsModule,
     GamesModule,
     SeasonsModule,
+    TeamsModule,
+    WeeksModule,
+    ResultsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
