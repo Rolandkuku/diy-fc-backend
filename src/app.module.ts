@@ -14,6 +14,8 @@ import { SeasonsModule } from './modules/seasons/seasons.module';
 import { TeamsModule } from './modules/teams/teams.module';
 import { WeeksModule } from './modules/weeks/weeks.module';
 import { ResultsModule } from './modules/results/results.module';
+import { Team } from './modules/teams/entities/team.entity';
+import { Week } from './modules/weeks/entities/week.entity';
 
 @Module({
   imports: [
@@ -26,8 +28,9 @@ import { ResultsModule } from './modules/results/results.module';
       username: 'beulec',
       password: 'not_in_prod',
       database: 'diy_fc',
-      entities: [Player, Club, Game, Season],
+      entities: [Player, Club, Game, Season, Team, Week],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     ConfigModule.forRoot({
       envFilePath: '.env.development',

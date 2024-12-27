@@ -16,4 +16,7 @@ export class Season {
 
   @ManyToOne(() => Team)
   team: Team;
+
+  @OneToMany(() => Team, (team) => team.season)
+  otherTeams: Team[];
 }

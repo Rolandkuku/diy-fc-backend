@@ -6,7 +6,6 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -17,7 +16,7 @@ export class Game {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @OneToOne(() => Club)
+  @ManyToOne(() => Club)
   club: Club;
 
   @ManyToOne(() => Player)
@@ -38,6 +37,9 @@ export class Game {
   @Column()
   currentMentalHealthLevel: number;
 
-  @Column()
-  output: Output;
+  @Column({ default: null })
+  output: Output | null;
+
+  @Column({ default: false })
+  deactivated: boolean;
 }

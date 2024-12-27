@@ -1,0 +1,4 @@
+export const BASE_DIVISION_START = 10;
+export const BASE_SQUIDS_AMOUNT = 1000;
+export const BASE_EQUIPMENT_LEVEL = 1;
+export const BASE_MENTAL_HEALTH_LEVEL = 100;

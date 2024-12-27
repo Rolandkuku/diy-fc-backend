@@ -1,5 +1,11 @@
 import { Season } from 'src/modules/seasons/entities/season.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Team {
@@ -10,5 +16,8 @@ export class Team {
   level: number;
 
   @OneToMany(() => Season, (season) => season.team)
+  seasons: Season[];
+
+  @ManyToOne(() => Season)
   season: Season;
 }
