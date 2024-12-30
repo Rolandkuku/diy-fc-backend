@@ -42,7 +42,7 @@ export class GamesService {
     );
     const allTeams = [team, ...otherTeams];
     const results = await this.resultRepository.save(
-      Array(allTeams.length)
+      Array(allTeams.length / 2)
         .fill(null)
         .map((_, i) => ({
           team1: allTeams[i],
@@ -62,15 +62,9 @@ export class GamesService {
     });
     const club = await this.clubRepository.findOne({
       where: { id: clubId },
-      relations: { player: true },
     });
-    const player = club.player;
-    if (!player) {
-      throw new Error('Player not found');
-    }
     return await this.gameRepository.save({
       club,
-      player,
       seasons: [season],
       currentDivision: BASE_DIVISION_START,
       currentSquidInBank: BASE_SQUIDS_AMOUNT,
@@ -85,7 +79,12 @@ export class GamesService {
       relations: {
         seasons: {
           team: true,
-          weeks: true,
+          weeks: {
+            results: {
+              team1: true,
+              team2: true,
+            },
+          },
           otherTeams: true,
         },
       },

@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PlayersModule } from './modules/players/players.module';
 import { ConfigModule } from '@nestjs/config';
-import { Player } from './modules/players/player.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClubsModule } from './modules/clubs/clubs.module';
 import { Club } from './modules/clubs/entities/club.entity';
@@ -28,7 +26,7 @@ import { Week } from './modules/weeks/entities/week.entity';
       username: 'beulec',
       password: 'not_in_prod',
       database: 'diy_fc',
-      entities: [Player, Club, Game, Season, Team, Week],
+      entities: [Club, Game, Season, Team, Week],
       synchronize: true,
       autoLoadEntities: true,
     }),
@@ -36,7 +34,6 @@ import { Week } from './modules/weeks/entities/week.entity';
       envFilePath: '.env.development',
       isGlobal: true,
     }),
-    PlayersModule,
     ClubsModule,
     GamesModule,
     SeasonsModule,

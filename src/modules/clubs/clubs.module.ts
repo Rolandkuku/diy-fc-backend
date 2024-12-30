@@ -3,10 +3,9 @@ import { ClubsService } from './clubs.service';
 import { ClubsController } from './clubs.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Club } from './entities/club.entity';
-import { Player } from '../players/player.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Club, Player])],
+  imports: [TypeOrmModule.forFeature([Club])],
   controllers: [ClubsController],
   providers: [ClubsService],
   exports: [TypeOrmModule],

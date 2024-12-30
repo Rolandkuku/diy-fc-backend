@@ -1,5 +1,5 @@
-import { Player } from 'src/modules/players/player.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Game } from 'src/modules/games/entities/game.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Club {
@@ -9,6 +9,6 @@ export class Club {
   @Column()
   name: string;
 
-  @ManyToOne(() => Player)
-  player: Player;
+  @OneToMany(() => Game, (game) => game.club)
+  games: Game[];
 }

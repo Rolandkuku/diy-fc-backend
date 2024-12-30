@@ -20,9 +20,9 @@ export class ClubsController {
     return this.clubsService.create(createClubDto);
   }
 
-  @Get('by-player/:player')
-  findByPlayer(@Param('player') player: string) {
-    return this.clubsService.findByPlayer(player);
+  @Get()
+  findAll() {
+    return this.clubsService.findAll();
   }
 
   @Get(':id')

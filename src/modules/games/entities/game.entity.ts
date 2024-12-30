@@ -1,5 +1,4 @@
 import { Club } from 'src/modules/clubs/entities/club.entity';
-import { Player } from 'src/modules/players/player.entity';
 import { Season } from 'src/modules/seasons/entities/season.entity';
 import {
   Column,
@@ -18,9 +17,6 @@ export class Game {
 
   @ManyToOne(() => Club)
   club: Club;
-
-  @ManyToOne(() => Player)
-  player: Player;
 
   @OneToMany(() => Season, (season) => season.game)
   seasons: Season[];
