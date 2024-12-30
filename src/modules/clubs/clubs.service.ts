@@ -29,7 +29,17 @@ export class ClubsService {
     return this.clubRepository.find({ relations: { player: true } });
   }
 
-  findOne(id: string) {
+  findByPlayer(playerId: string) {
+    return this.clubRepository.find({
+      where: {
+        player: {
+          id: playerId,
+        },
+      },
+    });
+  }
+
+  find(id: string) {
     return this.clubRepository.findOneBy({ id });
   }
 

@@ -9,11 +9,13 @@ import { Season } from '../seasons/entities/season.entity';
 import { Week } from '../weeks/entities/week.entity';
 import { Club } from '../clubs/entities/club.entity';
 import {
+  BASE_AMOUNT_OF_TEAMS,
   BASE_DIVISION_START,
   BASE_EQUIPMENT_LEVEL,
   BASE_MENTAL_HEALTH_LEVEL,
   BASE_SQUIDS_AMOUNT,
 } from 'src/constants';
+import { Result } from '../results/entities/result.entity';
 
 @Injectable()
 export class GamesService {
@@ -28,15 +30,34 @@ export class GamesService {
     private weekRepository: Repository<Week>,
     @InjectRepository(Club)
     private clubRepository: Repository<Club>,
+    @InjectRepository(Result)
+    private resultRepository: Repository<Result>,
   ) {}
   async create({ clubId }: CreateGameDto) {
     const team = await this.teamRepository.save({ level: 1 });
+    const otherTeams = await this.teamRepository.save(
+      Array(BASE_AMOUNT_OF_TEAMS - 1)
+        .fill(null)
+        .map(() => ({ level: 1 })),
+    );
+    const allTeams = [team, ...otherTeams];
+    const results = await this.resultRepository.save(
+      Array(allTeams.length)
+        .fill(null)
+        .map((_, i) => ({
+          team1: allTeams[i],
+          team2: allTeams[i + 1],
+          team1Score: Math.floor(Math.random() * 3),
+          team2Score: Math.floor(Math.random() * 3),
+        })),
+    );
     const week = await this.weekRepository.save({
       matchWeekNumber: 1,
+      results,
     });
     const season = await this.seasonRepository.save({
       team,
-      otherTeams: [],
+      otherTeams: otherTeams,
       weeks: [week],
     });
     const club = await this.clubRepository.findOne({

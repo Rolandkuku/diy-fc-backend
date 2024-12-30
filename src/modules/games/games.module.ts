@@ -8,9 +8,12 @@ import { Team } from '../teams/entities/team.entity';
 import { Week } from '../weeks/entities/week.entity';
 import { Club } from '../clubs/entities/club.entity';
 import { Player } from '../players/player.entity';
+import { Result } from '../results/entities/result.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Game, Player, Season, Team, Week, Club])],
+  imports: [
+    TypeOrmModule.forFeature([Game, Player, Season, Team, Week, Club, Result]),
+  ],
   controllers: [GamesController],
   providers: [GamesService],
   exports: [TypeOrmModule],
